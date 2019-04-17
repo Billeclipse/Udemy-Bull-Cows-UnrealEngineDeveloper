@@ -13,8 +13,7 @@ void FBullCowGame::Reset()
 
 	const FString HIDDEN_WORD = "planet";
 	MyHiddenWord = HIDDEN_WORD;
-	MyCurrentTry = 1;
-	
+	MyCurrentTry = 1;	
 }
 
 bool FBullCowGame::IsGameWon() const
@@ -29,15 +28,33 @@ bool FBullCowGame::IsGuessValid(FString)
 
 // receives a VALID guess, increments turn, and returns count
 // counts bulls & cows, and increases try # assuming valid guess
-BullCowCount FBullCowGame::SubmitGuess(FString)
+FBullCowCount FBullCowGame::SubmitGuess(FString Guess)
 {
 	// increment turn number
 	MyCurrentTry++;
 
 	// seturp a return variable
-	BullCowCount BullCowCount;
+	FBullCowCount FBullCowCount;
 	// loop through all letters in the guess
-		// compare letters against the hidden word
-
-	return BullCowCount;
+	int32 HiddenWordLength = MyHiddenWord.length();
+	int32 GuessLength = Guess.length();
+	for (int32 i = 0; i < HiddenWordLength; i++) {
+		// compare letters against the hidden word	
+		for (int32 j = 0; j < GuessLength; j++) {
+			// if they match thenadfasdf
+			if (MyHiddenWord[i] == Guess[j]) {
+				// if they're in the same place	
+				if (i == j) {
+					// incriment bulls
+					FBullCowCount.Bulls++;
+				}
+				// else
+				else {
+					// incriment cows
+					FBullCowCount.Cows++;
+				}
+			}
+		}
+	}
+	return FBullCowCount;
 }
